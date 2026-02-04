@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be Mine ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap');
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle, #2b000f, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+/* Candle glow */
+.glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(255,140,60,0.45), transparent 70%);
+  filter: blur(35px);
+  animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.07); }
+  100% { opacity: 0.6; transform: scale(1); }
+}
+
+.stage {
+  text-align: center;
+  z-index: 2;
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 60px;
+  color: #ff6f91;
+  text-shadow: 0 0 30px #ff6f91;
+}
+
+p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+button {
+  margin-top: 25px;
+  padding: 16px 36px;
+  font-size: 20px;
+  border: none;
+  border-radius: 50px;
+  background: #ff1744;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 35px #ff1744;
+  animation: pulse 1.4s infinite;
+}
+
+button:hover {
+  transform: scale(1.12);
+}
+
+.hidden { display: none; }
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 12px #ff1744; }
+  50% { box-shadow: 0 0 45px #ff1744; }
+  100% { box-shadow: 0 0 12px #ff1744; }
+}
+
+/* Hearts */
+.heart {
+  position: absolute;
+  font-size: 22px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  from { transform: translateY(-50px); opacity: 1; }
+  to { transform: translateY(110vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<!-- STAGE 1 -->
+<div class="stage" id="stage1">
+  <h1>Hey you…</h1>
+  <p>There’s something I need to ask 🕯️</p>
+  <button onclick="next()">Continue</button>
+</div>
+
+<!-- STAGE 2 -->
+<div class="stage hidden" id="stage2">
+  <h1>Will you be</h1>
+  <h1>my Valentine? 💘</h1>
+  <p>
+    No pressure.  
+    Just feelings.  
+    And a little courage ✨
+  </p>
+  <button onclick="yes()">YES ❤️</button>
+</div>
+
+<!-- STAGE 3 -->
+<div class="stage hidden" id="stage3">
+  <h1>❤️</h1>
+  <h1>You just made this day perfect</h1>
+  <p>
+    Guess this is the start of  
+    something beautiful ✨
+  </p>
+</div>
+
+<script>
+function next() {
+  stage1.classList.add("hidden");
+  stage2.classList.remove("hidden");
+}
+
+function yes() {
+  stage2.classList.add("hidden");
+  stage3.classList.remove("hidden");
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 7000);
+}
+setInterval(createHeart, 280);
+</script>
+
+</body>
+</html>
